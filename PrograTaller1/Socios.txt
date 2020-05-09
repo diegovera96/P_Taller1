@@ -1,0 +1,5 @@
+12345678-9,Juan,Perez,si
+ 98765432-1,Pedro,Fuentes,no
+11111111-1,Nicole,Sanchez,SI 
+  10354264-3,Alexander,Torres,sI 
+20185743-k,Felipe,Diaz,NO

@@ -1,0 +1,5 @@
+L1,Algebra para principiantes,John,Smith,Ingenieria
+  L2,Historia de Chile: Parte 1,Isabella,Gonzalez,Ciencias Sociales
+ L3,El arte de Amar,Erich,Fromm,Psicologia
+L4,El Silmarillion,J.R.R.,Tolkien,Fantasia
+L5,Calculo 1,Bruce,Edwards,Ingenieria 
