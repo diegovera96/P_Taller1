@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/darkf/Desktop/progra2020/StdUCN-6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jose_/Downloads/StdUCN-6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
