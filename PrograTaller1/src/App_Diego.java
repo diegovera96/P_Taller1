@@ -9,7 +9,7 @@ public class App_Diego {
 		while(!socios.isEndFile()) {
 			Registro reg = socios.getRegistro();
 			cant_Lineas_Socios++;	//suma la cantidad de lineas para poder determinar el largo que tendrán los vectores del archivo Socios.txt
-			StdOut.println(cant_Lineas_Socios); //testing
+			//StdOut.println(cant_Lineas_Socios); //testing
 			if(!"Socios.txt".isEmpty()) {
 
 			}
@@ -65,7 +65,7 @@ public class App_Diego {
 		String vec_NombreAutor[] = new String[cant_Lineas_Libros];
 		String vec_ApellidoAutor[] = new String[cant_Lineas_Libros];
 		String vec_Categoria[] = new String[cant_Lineas_Libros];
-		String vec_SumaLibros[] = new String[cant_Lineas_Libros];
+		int vec_SumaLibros[] = new int[cant_Lineas_Libros];
 		
 		//Lee el archivo Libros.txt y designa cada palabra o frase separada por comas como una variable
 		//Se agrego un .replaceAll(" ", "") para eliminar los espacios posibles entre datos a excepcion de los titulos
@@ -85,10 +85,12 @@ public class App_Diego {
 			vec_NombreAutor[aux_Libros] = nom_Autor;
 			vec_ApellidoAutor[aux_Libros] = apell_Autor;
 			vec_Categoria[aux_Libros] = categoria;
-			//vec_SumaLibros[aux_Libros] = ;
-			//StdOut.println(vec_CodigoLibro[aux_Libros]); //testing
+
 			aux_Libros++;
 		}
+
+		//vec_SumaLibros[aux_Libros] = ;
+		//StdOut.println(vec_CodigoLibro[aux_Libros]); //testing
 		
 		//StdOut.println("---------------------------------------------------------------");
 
@@ -115,7 +117,7 @@ public class App_Diego {
 			Registro reg = prestamos.getRegistro();
 			String cod_Prestamo = reg.getString().replaceAll(" ", "");
 			String cod_Libro = reg.getString().replaceAll(" ", "");
-			String rut_Socio = reg.getString().replaceAll(" ", "");
+			String rut_Socio = reg.getString().replaceAll(" ", "").replaceAll("-", "");
 			String fecha_Prestamo = reg.getString().replaceAll(" ", "");
 			String fecha_Devolucion = reg.getString().replaceAll(" ", "");
 			
@@ -128,6 +130,22 @@ public class App_Diego {
 
 			aux_Prestamos++;
 		}
+		
+		
+		//2 for anidados que permite comparar la lista libros con la lista libros prestados
+		//mediante sus respectivos codigos, al ser iguales va sumando en 1 unidad
+		//y almacenandolas en el vector suma de libros
+		String aux_CodigoLibro = "";
+		for(int i = 0; i < cant_Lineas_Libros; i++) {
+			aux_CodigoLibro = vec_CodigoLibro[i];
+			for(int j = i; j < cant_Lineas_Prestamos; j++) {
+				if(vec_CodigoLibroP[j].equalsIgnoreCase(aux_CodigoLibro)) {
+					vec_SumaLibros[i]++;
+				}
+			}
+			StdOut.print("[" + vec_SumaLibros[i] + "]"); //testing
+		}
+		StdOut.println("");
 		
 		//StdOut.println("---------------------------------------------------------------");
 
@@ -297,14 +315,20 @@ public class App_Diego {
 					switch(opcionRequerida_2) {
 					case 1:
 						//Lista de libros prestados.
+						lista_Libros_Prestados(cant_Lineas_Socios, cant_Lineas_Prestamos, cant_Lineas_Libros, vec_CodigoLibro, 
+												vec_Titulo,  vec_Activo2, vec_Rut, vec_RutSocio, vec_CodigoLibroP);
 						break;
 					case 2:
 						//Cantidad de libros prestados.
+						cantidad_Libros_Prestados(cant_Lineas_Socios, cant_Lineas_Prestamos, cant_Lineas_Libros, vec_CodigoLibro, vec_Titulo,  
+								vec_Activo2, vec_Rut, vec_RutSocio, vec_CodigoLibroP);
 						break;
 					case 3:
+						libro_Mas_Prestado(cant_Lineas_Libros, vec_SumaLibros, vec_CodigoLibro, vec_Titulo);
 						//Libro mas solicitado.
 						break;
 					case 4:
+						libro_Menos_Prestado(cant_Lineas_Libros, vec_SumaLibros, vec_CodigoLibro, vec_Titulo);
 						//Libro menos solicitado.
 						break;
 					case 5:
@@ -315,12 +339,145 @@ public class App_Diego {
 			}
 		}
 	}
+
 	
-	public static void desplegar_Activos(int cant_Lineas_Socios, Boolean vec_Activo2[], String vec_Nombre[], String vec_Apellido[]) { //metodo que permite despelgar los usuarios activos
+	//metodo que permite despelgar los usuarios activos
+	public static void desplegar_Activos(int cant_Lineas_Socios, Boolean vec_Activo2[], String vec_Nombre[], String vec_Apellido[]) { 
 		StdOut.println("Los usuarios actualemente activos son:");
 		for(int i = 0; i < cant_Lineas_Socios; i++) {
 			if(vec_Activo2[i] == true) {
 				StdOut.println("Nombre: "+ vec_Nombre[i] +" "+ vec_Apellido[i]);
+			}
+		}
+	}
+	
+	
+	
+	//Este metodo permite desplegar los libros prestados
+	//utilizando 3 for anidados que recorren los 3 documentos txt
+	public static void lista_Libros_Prestados(int cant_Lineas_Socios, int cant_Lineas_Prestamos, int cant_Lineas_Libros, String vec_CodigoLibro[], String vec_Titulo[],  
+												Boolean vec_Activo2[], String vec_Rut[], String vec_RutSocio[], String vec_CodigoLibroP[]) {
+		int i;
+		String aux_Rut = "";
+		StdOut.println("Lista de libros prestados:");
+
+		for(i = 0; i < cant_Lineas_Socios; i++) {
+			if(vec_Activo2[i] == true) {
+				aux_Rut = vec_Rut[i];
+				int j;
+				String aux_CodigoLibroP = "";
+				for(j = 0; j < cant_Lineas_Prestamos; j++) {
+					if((vec_RutSocio[j]).equalsIgnoreCase(aux_Rut)) {
+						aux_CodigoLibroP = vec_CodigoLibroP[j];
+						int k;
+						for(k = 0; k < cant_Lineas_Libros; k++) {
+							if(vec_CodigoLibro[k].equalsIgnoreCase(aux_CodigoLibroP)) {
+								StdOut.println("Codigo del libro: " + vec_CodigoLibro[k] + " " + "Titulo del libro: " + vec_Titulo[k]);
+							}
+						}
+					}
+				}
+			}
+		}	
+	}
+
+	//Permite calcular la cantidad de libros prestados
+	//me diante 3 for anidados que verifican cada rut activo
+	//y posteriormente almacenando un contador de libros prestados
+	public static void cantidad_Libros_Prestados(int cant_Lineas_Socios, int cant_Lineas_Prestamos, int cant_Lineas_Libros, String vec_CodigoLibro[], String vec_Titulo[],  
+													Boolean vec_Activo2[], String vec_Rut[], String vec_RutSocio[], String vec_CodigoLibroP[]) {
+		int i;
+		String aux_Rut = "";
+		int contador_Libros = 0;
+		StdOut.print("La cantidad de libros prestados es de: ");
+
+		for(i = 0; i < cant_Lineas_Socios; i++) {
+			if(vec_Activo2[i] == true) {
+				aux_Rut = vec_Rut[i];
+				int j;
+				String aux_CodigoLibroP = "";
+				for(j = 0; j < cant_Lineas_Prestamos; j++) {
+					if((vec_RutSocio[j]).equalsIgnoreCase(aux_Rut)) {
+						aux_CodigoLibroP = vec_CodigoLibroP[j];
+						int k;
+						for(k = 0; k < cant_Lineas_Libros; k++) {
+							if(vec_CodigoLibro[k].equalsIgnoreCase(aux_CodigoLibroP)) {
+								contador_Libros++;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		StdOut.println(contador_Libros);
+	}
+	
+	
+	
+	//Permite encontrar y almacenar en un vector, el o los libros mas prestados
+	public static void libro_Mas_Prestado(int cant_Lineas_Libros, int vec_SumaLibros[], String vec_CodigoLibro[], String vec_Titulo[]) {
+		int aux_Min = -1;
+		String aux_Vector[] = new String[cant_Lineas_Libros];
+		StdOut.println("El o los libro(s) mas prestados son:");
+		for(int i = 0; i < cant_Lineas_Libros; i++) {
+			if(aux_Vector[i] == null) {
+				aux_Vector[i] = "";
+			}
+			if(vec_SumaLibros[i] > aux_Min) {
+				aux_Min = vec_SumaLibros[i];
+				aux_Vector[0] = vec_CodigoLibro[i];
+			}
+			else {
+				if(vec_SumaLibros[i] == aux_Min) {
+					aux_Vector[i] = vec_CodigoLibro[i];
+				}
+				else {
+					aux_Vector[i] = "";
+				}
+			}
+
+		}
+		
+		for(int j = 0; j < cant_Lineas_Libros; j++) {
+			for(int k = 0; k < cant_Lineas_Libros; k++) {
+				if(aux_Vector[j].equalsIgnoreCase(vec_CodigoLibro[k]) /*&& !aux_Vector[j].equals("") && aux_Vector[j] != null*/) {
+					StdOut.println("Titulo del libro: " + vec_Titulo[k] + " Codigo del libro: " + aux_Vector[j]);
+				}
+			}
+		}
+	}
+	
+	
+	//Permite encontrar y almacenar en un vector, el o los libros menos prestados
+	public static void libro_Menos_Prestado(int cant_Lineas_Libros, int vec_SumaLibros[], String vec_CodigoLibro[], String vec_Titulo[]) {
+		int aux_Max = 999;
+		String aux_Vector[] = new String[cant_Lineas_Libros];
+		StdOut.println("El o los libro(s) menos prestados son:");
+		for(int i = 0; i < cant_Lineas_Libros; i++) {
+			if(aux_Vector[i] == null) {
+				aux_Vector[i] = "";
+			}
+			if(vec_SumaLibros[i] < aux_Max) {
+				aux_Max = vec_SumaLibros[i];
+				aux_Vector[0] = vec_CodigoLibro[i];
+			}
+			else {
+				if(vec_SumaLibros[i] == aux_Max) {
+					aux_Vector[i] = vec_CodigoLibro[i];
+				}
+				else {
+					aux_Vector[i] = "";
+				}
+			}
+
+		}
+		
+		for(int j = 0; j < cant_Lineas_Libros; j++) {
+			for(int k = 0; k < cant_Lineas_Libros; k++) {
+				if(aux_Vector[j].equalsIgnoreCase(vec_CodigoLibro[k]) /*&& !aux_Vector[j].equals("") && aux_Vector[j] != null*/) {
+					StdOut.println("Titulo del libro: " + vec_Titulo[k] + " Codigo del libro: " + aux_Vector[j]);
+				}
 			}
 		}
 	}
