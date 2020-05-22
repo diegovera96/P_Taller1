@@ -143,7 +143,7 @@ public class App_Diego {
 					vec_SumaLibros[i]++;
 				}
 			}
-			StdOut.print("[" + vec_SumaLibros[i] + "]"); //testing
+			//StdOut.print("[" + vec_SumaLibros[i] + "]"); //testing
 		}
 		StdOut.println("");
 		
@@ -164,7 +164,7 @@ public class App_Diego {
 					StdOut.println("[4] Salir.");
 					
 					StdOut.println("Ingrese una opcion.");
-					String opcionIngresada_1 = StdIn.readString();
+					String opcionIngresada_1 = StdIn.readLine();
 					opcionRequerida_1 = Integer.parseInt(opcionIngresada_1);
 					if(opcionRequerida_1 < 0 || opcionRequerida_1 > 4) {	//Se delimitan las opciones ingresadas por el usuario
 						StdOut.println("Opcion no valida.");
@@ -189,7 +189,7 @@ public class App_Diego {
 							StdOut.println("[4] Volver.");	
 							
 							StdOut.println("Ingrese una opcion.");
-							String opcionIngresada_1 = StdIn.readString();
+							String opcionIngresada_1 = StdIn.readLine();
 							opcionRequerida_2 = Integer.parseInt(opcionIngresada_1);
 							if(opcionRequerida_2 < 0 || opcionRequerida_2 > 4) {	//Se delimitan las opciones ingresadas por el usuario
 								StdOut.println("Opcion no valida.");
@@ -231,7 +231,7 @@ public class App_Diego {
 						int aux = 0;
 						Boolean rut_Encontrado = false;
 						for(i = 0; i < cant_Lineas_Socios; i++) {
-							if(Integer.parseInt(vec_Rut[i].replaceAll("k", "0").replaceAll("K", "0")) == (rut_Requerido)) { //reemplaza por un 0 a los ruts terminados en k del vector vec_Rut
+							if(Integer.parseInt(vec_Rut[i].replaceAll("k", "0").replaceAll("K", "0")) == (rut_Requerido) && rut_Requerido > 0) { //reemplaza por un 0 a los ruts terminados en k del vector vec_Rut
 								rut_Encontrado = true;
 								aux = i;
 							}
@@ -302,7 +302,7 @@ public class App_Diego {
 							StdOut.println("[5] Volver.");
 
 							StdOut.println("Ingrese una opcion.");
-							String opcionIngresada2 = StdIn.readString();
+							String opcionIngresada2 = StdIn.readLine();
 							opcionRequerida_2 = Integer.parseInt(opcionIngresada2);
 							if(opcionRequerida_2 < 0 || opcionRequerida_2 > 5) {
 								StdOut.println("Ingrese una opcion valida");
