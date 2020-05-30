@@ -92,9 +92,6 @@ public class App_Jose {
 		//vec_SumaLibros[aux_Libros] = ;
 		//StdOut.println(vec_CodigoLibro[aux_Libros]); //testing
 		
-		//StdOut.println("---------------------------------------------------------------");
-
-		
 		int cant_Lineas_Prestamos = 0;
 		ArchivoEntrada prestamos = new ArchivoEntrada("Prestamos.txt");
 		while(!prestamos.isEndFile()) {
