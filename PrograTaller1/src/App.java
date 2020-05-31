@@ -1,5 +1,9 @@
 import java.io.IOException;
 import ucn.*;
+/** Taller 1
+ * @author José Benitez Rojas y Diego Vera Santis
+ * */
+
 public class App {
 
 	public static void main(String[] args) throws IOException {
@@ -206,15 +210,21 @@ public class App {
 							StdOut.println("Ingrese una opcion.");
 							StdOut.println("A: " + opcionRequerida_2);
 							String opcionIngresada_1 = StdIn.readLine();
+							StdOut.println("D: " + opcionRequerida_2);
 							opcionRequerida_2 = Integer.parseInt(opcionIngresada_1);
+							
+							/*String caca = opcionRequerida_2;
+							int caca2 = opcionRequerida_2;*/
 							StdOut.println("B: " + opcionRequerida_2);
 							if(opcionRequerida_2 < 0 || opcionRequerida_2 > 4) {	//Se delimitan las opciones ingresadas por el usuario
 								StdOut.println("Opcion no valida.");
+								opcionRequerida_2 = 4;
 							}
 							StdOut.println("C: " + opcionRequerida_2);
 							
 						}catch(NumberFormatException exc) {
 							StdOut.println("Se ha ingresado una opcion no valida");
+							opcionRequerida_2 = 4;
 						}
 					}while(opcionRequerida_2 == 0);
 					
@@ -366,7 +376,6 @@ public class App {
 	}
 	
 	
-	
 	//Este metodo permite desplegar los libros prestados
 	//utilizando 3 for anidados que recorren los 3 documentos txt
 	public static void lista_Libros_Prestados(int cant_Lineas_Socios, int cant_Lineas_Prestamos, int cant_Lineas_Libros, String vec_CodigoLibro[], String vec_Titulo[],  
@@ -484,8 +493,13 @@ public class App {
 		}
 	}
 	
-	
-	/*Permite encontrar y almacenar en un vector, el o los libros menos prestados*/
+	/**Permite encontrar y almacenar en un vector, el o los libros menos prestados
+	 * 
+	 * @param cant_Lineas_Libros caca1
+	 * @param vec_SumaLibros caca2
+	 * @param vec_CodigoLibro caca3
+	 * @param vec_Titulo caca4
+	 * */
 	public static void libro_Menos_Prestado(int cant_Lineas_Libros, int vec_SumaLibros[], String vec_CodigoLibro[], String vec_Titulo[]) {
 		int aux_Max = 999;
 		String aux_Vector[] = new String[cant_Lineas_Libros];
@@ -531,6 +545,7 @@ public class App {
 		for(i = 0; i < cant_Lineas_Libros; i++) {
 			if(vec_CodigoLibro[i].equalsIgnoreCase(codigoIngresado)) {
 				StdOut.println(vec_CodigoLibro[i]+ " , " + vec_Titulo[i] + " , " + vec_NombreAutor[i] + " " + vec_ApellidoAutor[i] + " , " + vec_Categoria[i]);
+				break;
 			}
 			else {
 				if(i == cant_Lineas_Libros-1) {
