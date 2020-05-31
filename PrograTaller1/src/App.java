@@ -204,11 +204,14 @@ public class App {
 							StdOut.println("[4] Volver.");	
 							
 							StdOut.println("Ingrese una opcion.");
+							StdOut.println("A: " + opcionRequerida_2);
 							String opcionIngresada_1 = StdIn.readLine();
 							opcionRequerida_2 = Integer.parseInt(opcionIngresada_1);
+							StdOut.println("B: " + opcionRequerida_2);
 							if(opcionRequerida_2 < 0 || opcionRequerida_2 > 4) {	//Se delimitan las opciones ingresadas por el usuario
 								StdOut.println("Opcion no valida.");
 							}
+							StdOut.println("C: " + opcionRequerida_2);
 							
 						}catch(NumberFormatException exc) {
 							StdOut.println("Se ha ingresado una opcion no valida");
@@ -217,6 +220,7 @@ public class App {
 					
 					switch(opcionRequerida_2) {
 					case 1:
+
 						desplegar_Activos(cant_Lineas_Socios, vec_Activo2, vec_Nombre, vec_Apellido);
 						break;
 					case 2:
@@ -242,26 +246,8 @@ public class App {
 							StdOut.println("Se ha ingresado un rut con formato no valida"); //manejo de excepcion para un rut no valido
 						}
 						
-						int i = 0;
-						int aux = 0;
-						Boolean rut_Encontrado = false;
-						for(i = 0; i < cant_Lineas_Socios; i++) {
-							if(Integer.parseInt(vec_Rut[i].replaceAll("k", "0").replaceAll("K", "0")) == (rut_Requerido) && rut_Requerido > 0) { //reemplaza por un 0 a los ruts terminados en k del vector vec_Rut
-								rut_Encontrado = true;
-								aux = i;
-							}
-						}
-						if(rut_Encontrado == true) {
-							if(vec_Activo2[aux] == true) {
-								StdOut.println("El estado actual del rut " + vec_Rut[aux] + " es Activo.");
-							}
-							else {
-								StdOut.println("El estado actual del rut " + vec_Rut[aux] + " es No Activo.");
-							}
-						}
-						else {
-							StdOut.println("Rut no encontrado.");
-						}
+						buscar_Estado_Socio(cant_Lineas_Socios, rut_Requerido, vec_Rut, vec_Activo2);
+
 						break;
 					case 4:
 						break;
@@ -441,7 +427,29 @@ public class App {
 		StdOut.println(contador_Libros);
 	}
 	
-	
+	public static void buscar_Estado_Socio(int cant_Lineas_Socios, int rut_Requerido, String vec_Rut[], Boolean vec_Activo2[]) {
+		
+		int i = 0;
+		int aux = 0;
+		Boolean rut_Encontrado = false;
+		for(i = 0; i < cant_Lineas_Socios; i++) {
+			if(Integer.parseInt(vec_Rut[i].replaceAll("k", "0").replaceAll("K", "0")) == (rut_Requerido) && rut_Requerido > 0) { //reemplaza por un 0 a los ruts terminados en k del vector vec_Rut
+				rut_Encontrado = true;
+				aux = i;
+			}
+		}
+		if(rut_Encontrado == true) {
+			if(vec_Activo2[aux] == true) {
+				StdOut.println("El estado actual del rut " + vec_Rut[aux] + " es Activo.");
+			}
+			else {
+				StdOut.println("El estado actual del rut " + vec_Rut[aux] + " es No Activo.");
+			}
+		}
+		else {
+			StdOut.println("Rut no encontrado.");
+		}
+	}
 	
 	//Permite encontrar y almacenar en un vector, el o los libros mas prestados
 	public static void libro_Mas_Prestado(int cant_Lineas_Libros, int vec_SumaLibros[], String vec_CodigoLibro[], String vec_Titulo[]) {
@@ -477,7 +485,7 @@ public class App {
 	}
 	
 	
-	//Permite encontrar y almacenar en un vector, el o los libros menos prestados
+	/*Permite encontrar y almacenar en un vector, el o los libros menos prestados*/
 	public static void libro_Menos_Prestado(int cant_Lineas_Libros, int vec_SumaLibros[], String vec_CodigoLibro[], String vec_Titulo[]) {
 		int aux_Max = 999;
 		String aux_Vector[] = new String[cant_Lineas_Libros];
