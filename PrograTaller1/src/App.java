@@ -213,8 +213,6 @@ public class App {
 							StdOut.println("D: " + opcionRequerida_2);
 							opcionRequerida_2 = Integer.parseInt(opcionIngresada_1);
 							
-							/*String caca = opcionRequerida_2;
-							int caca2 = opcionRequerida_2;*/
 							StdOut.println("B: " + opcionRequerida_2);
 							if(opcionRequerida_2 < 0 || opcionRequerida_2 > 4) {	//Se delimitan las opciones ingresadas por el usuario
 								StdOut.println("Opcion no valida.");
