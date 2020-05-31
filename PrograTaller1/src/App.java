@@ -1,6 +1,6 @@
 import java.io.IOException;
 import ucn.*;
-/** Taller 1
+/** Taller 1 Programacion Avanzada.
  * @author José Benitez Rojas y Diego Vera Santis
  * */
 
@@ -364,8 +364,13 @@ public class App {
 		}
 	}
 
-	
-	//metodo que permite despelgar los usuarios activos
+	/**Metodo que permite despelgar los usuarios activos
+	 * 
+	 * @param cant_Lineas_Socios cantidad de socios totales.
+	 * @param vec_Activo2 vector comprueba si un usuario esta activo
+	 * @param vec_Nombre vector que contiene el nombre de los usuarios
+	 * @param vec_Apellido vector que contiene el apellido de los usuarios
+	 */
 	public static void desplegar_Activos(int cant_Lineas_Socios, Boolean vec_Activo2[], String vec_Nombre[], String vec_Apellido[]) { 
 		StdOut.println("Los usuarios actualemente activos son:");
 		for(int i = 0; i < cant_Lineas_Socios; i++) {
@@ -374,10 +379,19 @@ public class App {
 			}
 		}
 	}
-	
-	
-	//Este metodo permite desplegar los libros prestados
-	//utilizando 3 for anidados que recorren los 3 documentos txt
+		
+	/**Metodo que permite desplegar la lista de libros prestados actualmente
+	 * 
+	 * @param cant_Lineas_Socios cantidad de socios totales.
+	 * @param cant_Lineas_Prestamos cantidad de prestamos realizados.
+	 * @param cant_Lineas_Libros cantida de libros en el sistema.
+	 * @param vec_CodigoLibro vector que contiene los codigos de todos los libros.
+	 * @param vec_Titulo vector que contiene los titulos de todos los libros.
+	 * @param vec_Activo2 vectoe que comprueba si el usuario esta activo.
+	 * @param vec_Rut vector que contiene los ruts de los usuarios.
+	 * @param vec_RutSocio vector que contiene los ruts de los socios.
+	 * @param vec_CodigoLibroP vector que contine los codigos de los libros prestados.
+	 */
 	public static void lista_Libros_Prestados(int cant_Lineas_Socios, int cant_Lineas_Prestamos, int cant_Lineas_Libros, String vec_CodigoLibro[], String vec_Titulo[],  
 												Boolean vec_Activo2[], String vec_Rut[], String vec_RutSocio[], String vec_CodigoLibroP[]) {
 		int i;
@@ -404,9 +418,18 @@ public class App {
 		}	
 	}
 
-	//Permite calcular la cantidad de libros prestados
-	//me diante 3 for anidados que verifican cada rut activo
-	//y posteriormente almacenando un contador de libros prestados
+	/**Este metodo permite desplegar los libros prestados utilizando 3 for anidados que recorren los 3 documentos txt
+	 * 
+	 * @param cant_Lineas_Socios cantidad de socios totales.
+	 * @param cant_Lineas_Prestamos cantidad prestamos realizados.
+	 * @param cant_Lineas_Libros cantidad de libros en el sistema.
+	 * @param vec_CodigoLibro vector que contiene los codigos de los libros.
+	 * @param vec_Titulo vector que contiene el titulo de los libros.
+	 * @param vec_Activo2 vector que comprueba si un usuario esta activo.
+	 * @param vec_Rut vector que contiene los ruts de los usuarios
+	 * @param vec_RutSocio vector que contiene el rut de los socios activos
+	 * @param vec_CodigoLibroP vector que contiene el codigo de los libros prestados
+	 */
 	public static void cantidad_Libros_Prestados(int cant_Lineas_Socios, int cant_Lineas_Prestamos, int cant_Lineas_Libros, String vec_CodigoLibro[], String vec_Titulo[],  
 													Boolean vec_Activo2[], String vec_Rut[], String vec_RutSocio[], String vec_CodigoLibroP[]) {
 		int i;
@@ -436,6 +459,13 @@ public class App {
 		StdOut.println(contador_Libros);
 	}
 	
+	/**Permite calcular la cantidad de libros prestados mediante 3 "for" andidados que verifican cada rut activo y posteriormente almacenando un contador de libros prestados
+	 * 
+	 * @param cant_Lineas_Socios cantidad de socios totales.
+	 * @param rut_Requerido pedido para compararlo con los ruts que estan dentro del sistema.
+	 * @param vec_Rut vector que se utiliza para buscar dentro de el un rut igual al requerido. 
+	 * @param vec_Activo2 vetor que se utiliza para comprobar si un usuario esta activo.
+	 */
 	public static void buscar_Estado_Socio(int cant_Lineas_Socios, int rut_Requerido, String vec_Rut[], Boolean vec_Activo2[]) {
 		
 		int i = 0;
@@ -460,7 +490,13 @@ public class App {
 		}
 	}
 	
-	//Permite encontrar y almacenar en un vector, el o los libros mas prestados
+	/**Permite encontrar y almacenar en un vector, el o los libros mas prestados.
+	 * 
+	 * @param cant_Lineas_Libros Variable que almacena la cantidad de lineas del archivo "Libros.txt"
+	 * @param vec_SumaLibros Vector que almacena la suma de libros del archivo "Libros.txt"
+	 * @param vec_CodigoLibro Vector que almacena los codigos de cada libro.
+	 * @param vec_Titulo Vector que almacena el titulo de cada libro.
+	 */
 	public static void libro_Mas_Prestado(int cant_Lineas_Libros, int vec_SumaLibros[], String vec_CodigoLibro[], String vec_Titulo[]) {
 		int aux_Min = -1;
 		String aux_Vector[] = new String[cant_Lineas_Libros];
@@ -493,12 +529,12 @@ public class App {
 		}
 	}
 	
-	/**Permite encontrar y almacenar en un vector, el o los libros menos prestados
+	/**Permite encontrar y almacenar en un vector, el o los libros menos prestados.
 	 * 
-	 * @param cant_Lineas_Libros caca1
-	 * @param vec_SumaLibros caca2
-	 * @param vec_CodigoLibro caca3
-	 * @param vec_Titulo caca4
+	 * @param cant_Lineas_Libros Variable que almacena la cantidad de lineas del archivo "Libros.txt"
+	 * @param vec_SumaLibros Vector que almacena la suma de libros del archivo "Libros.txt"
+	 * @param vec_CodigoLibro Vector que almacena los codigos de cada libro.
+	 * @param vec_Titulo Vector que almacena el titulo de cada libro.
 	 * */
 	public static void libro_Menos_Prestado(int cant_Lineas_Libros, int vec_SumaLibros[], String vec_CodigoLibro[], String vec_Titulo[]) {
 		int aux_Max = 999;
@@ -532,14 +568,32 @@ public class App {
 		}
 	}
 	
+	/**Metodo que permite desplegar los libros ya registrados.
+	 * 
+	 * @param vec_CodigoLibro Vector que almacena el codigo de cada libro
+	 * @param vec_Titulo Vector que almacena el titulo de cada libro.
+	 * @param vec_NombreAutor Vector que almacena el nombre del autor de cada libro.
+	 * @param vec_ApellidoAutor Vector que almacena el apellido del autor de cada libro.
+	 * @param vec_Categoria Vector que almacena la categoria de cada libro.
+	 * @param cant_Lineas_Libros Variable que almacena la cantidad de lineas del archivo "Libros.txt"
+	 */
 	public static void desplegar_Libros_Registrados(String vec_CodigoLibro[], String vec_Titulo[], String vec_NombreAutor[], String vec_ApellidoAutor[], String vec_Categoria[], int cant_Lineas_Libros) {
 		StdOut.println("Libros registrados: ");
 		for(int i = 0; i < cant_Lineas_Libros; i++) {
 			StdOut.println(vec_CodigoLibro[i] + " , " + vec_Titulo[i] + " , " + vec_NombreAutor[i] + " " + vec_ApellidoAutor[i] + " , " + vec_Categoria[i]);
 		}		
 	}
-	
-	//metodo que busca un libro por el codigo ingresado
+
+	/**Metodo que busca un libro por el codigo ingresado.
+	 * 
+	 * @param vec_CodigoLibro Vector que almacena los codigos de cada libro.
+	 * @param vec_Titulo Vector que almacena el titulo de cada libro.
+	 * @param vec_NombreAutor Vector que almacena el nombre del autor de cada libro.
+	 * @param vec_ApellidoAutor Vector que almacena el apellido del autor de cada libro.
+	 * @param vec_Categoria Vector que almacena la categoria de cada libro.
+	 * @param cant_Lineas_Libros  Variable que almacena la cantidad de limeas del archivo "Libros.txt"
+	 * @param codigoIngresado Variable que se ingresa desde el menu para poder buscar un libro por codigo
+	 * */
 	public static void buscar_Libro_Codigo(String vec_CodigoLibro[], String vec_Titulo[], String vec_NombreAutor[], String vec_ApellidoAutor[], String vec_Categoria[], int cant_Lineas_Libros, String codigoIngresado) {
 		int i = 0;
 		for(i = 0; i < cant_Lineas_Libros; i++) {
@@ -555,5 +609,5 @@ public class App {
 			}
 		}
 	}
-	
+
 }
