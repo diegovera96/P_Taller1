@@ -47,6 +47,9 @@ public class App {
 				vec_Apellido[aux_Socios] = apellido;
 				vec_Activo1[aux_Socios] = activo_1;
 				vec_Activo2[aux_Socios] = activo_2;
+				
+				
+				aux_Socios++;
 			}
 
 			
@@ -55,7 +58,6 @@ public class App {
 			
 			//StdOut.println(vec_Rut[aux_Socios]); //testing para ver si funciona 
 			//StdOut.println(vec_Activo2[aux_Socios]); //same
-			aux_Socios++;
 
 		}
 		//StdOut.println("---------------------------------------------------------------");
@@ -208,17 +210,13 @@ public class App {
 							StdOut.println("[4] Volver.");	
 							
 							StdOut.println("Ingrese una opcion.");
-							StdOut.println("A: " + opcionRequerida_2);
 							String opcionIngresada_1 = StdIn.readLine();
-							StdOut.println("D: " + opcionRequerida_2);
 							opcionRequerida_2 = Integer.parseInt(opcionIngresada_1);
 							
-							StdOut.println("B: " + opcionRequerida_2);
 							if(opcionRequerida_2 < 0 || opcionRequerida_2 > 4) {	//Se delimitan las opciones ingresadas por el usuario
 								StdOut.println("Opcion no valida.");
 								opcionRequerida_2 = 4;
 							}
-							StdOut.println("C: " + opcionRequerida_2);
 							
 						}catch(NumberFormatException exc) {
 							StdOut.println("Se ha ingresado una opcion no valida");

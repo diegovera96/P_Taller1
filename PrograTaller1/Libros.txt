@@ -3,3 +3,21 @@ L1,Algebra para principiantes,John,Smith,Ingenieria
  L3,El arte de Amar,Erich,Fromm,Psicologia
 L4,El Silmarillion,J.R.R.,Tolkien,Fantasia
 L5,Calculo 1,Bruce,Edwards,Ingenieria 
+
+
+
+
+
+
+L5,Calculo 1,Bruce,Edwards,Ingenieria 
+
+
+
+
+
+
+
+
+
+
+
